@@ -8,4 +8,4 @@ class Account:
         )
     
     def show_balance(self, asset):
-        return self.client.get_asset_balance(asset)
+        return self.client.get_asset_balance(asset = asset)
