@@ -5,12 +5,14 @@ class Orders:
 
     def market_buy(self, symbol, quantity):
 
-        order = self.order_market_buy(symbol,quantity)
+        order = self.client.order_market_buy(symbol=symbol,
+                                             quantity=quantity)
 
         return order
     
     def market_sell(self, symbol, quantity):
 
-        order = self.order_market_sell(symbol,quantity)
+        order = self.client.order_market_sell(symbol = symbol,
+                                              quantity = quantity)
 
         return order
