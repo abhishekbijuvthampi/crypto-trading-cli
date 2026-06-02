@@ -1,2 +1,7 @@
-from keys import api, secret
-from binance import Client
+from binance.client import Client
+
+client = Client(
+    API_KEY,
+    API_SECRET,
+    testnet=True
+)
