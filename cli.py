@@ -81,14 +81,15 @@ def checkCMD(account, order):
     if args.command == 'account':
         if args.asset:
             info = account.show_asset(args.asset)
+            df = pd.Series(info)
+            print(df)
         
-        elif args.log:
+        elif args.logs:
             with open("data/app.log", "r") as f:
                 for line in f:
                     print(line.strip())
             info  = "Checked Log info."
-        df = pd.Series(info)
-        print(df)
+            df = info
 
     elif args.command == 'trade':
         if args.subcommand == 'market':
