@@ -97,7 +97,20 @@ def checkCMD(account, order):
             elif args.side == 's':
                 info = order.market_sell(args.pair, 
                     args.quantity)
-            
+                
+        if args.subcommand == 'limit':
+            if args.side == 'b':
+                info = order.limit_buy(args.pair, 
+                    args.quantity, args.price)
+        
+            elif args.side == 's':
+                info = order.limit_sell(args.pair, 
+                    args.quantity, args.price)
+        
+    # logger.info(info)
 
-    logger.info(info)
+    df = pd.Series(info)
+    logger.info(df)
+    
+    return df 
     
