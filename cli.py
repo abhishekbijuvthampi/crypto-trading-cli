@@ -27,31 +27,50 @@ parser_account.add_argument(
     action='store_true'
     )
 
+def add_common_args(p):
+    p.add_argument(
+        'side', 
+        choices=['b', 's'],
+        help="choose : 'b' (buy), 's' (sell) "
+        )
+    p.add_argument(
+        '-p',
+        '--pair', 
+        type=str,
+        help="Trading Pair",
+        required=True
+        )
+    p.add_argument(
+        'quantity',
+        type=float,
+        help="quantity of the trade"
+        )
+
 
 # Subcommand Trade
 parser_trade = subparsers.add_parser(
-    "trades",
-    help="to Trade in Market"
+    "trade",
+    help="to Trade"
     )
-parser_trade.add_argument(
-    '-sb',
-    '--symbol', 
-    type=str,
-    help="symbol to place Trade",
-    required=True
-    )
-parser_trade.add_argument(
-    '-s',
-    '--side', 
-    choices=['BUY', 'SELL'],
-    help="choose : BUY or SELL (CAPS)",
-    required=True
-    )
-parser_trade.add_argument(
-    'quantity',
-    type=float,
-    help="quantity of the trade"
-    )
+
+subparsers_trade = parser_trade.add_subparsers(dest="subcommand")
+
+#market buy/sell
+market_trade = subparsers_trade.add_parser(
+    "market",
+    help="For market BUY/SELL")
+add_common_args(market_trade)
+
+#limit buy/sell
+limit_trade = subparsers_trade.add_parser(
+    "limit",
+    help="For limit BUY/SELL")
+add_common_args(limit_trade)
+limit_trade.add_argument(
+    'price', 
+    help="Price when the trade should be executed."
+)
+
 
 args = parser.parse_args()
 
@@ -69,14 +88,16 @@ def checkCMD(account, order):
                     print(line.strip())
             info  = "Checked Log info"
     
-    elif args.command == 'trades':
-        if args.side == 'BUY':
-            info = order.market_buy(args.symbol, 
-                args.quantity)
+    elif args.command == 'trade':
+        if args.subcommand == 'market':
+            if args.side == 'b':
+                info = order.market_buy(args.pair, 
+                    args.quantity)
         
-        elif args.side == 'SELL':
-            info = order.market_sell(args.symbol, 
-                args.quantity)
+            elif args.side == 's':
+                info = order.market_sell(args.pair, 
+                    args.quantity)
+            
 
     logger.info(info)
     

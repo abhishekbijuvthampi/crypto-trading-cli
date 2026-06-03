@@ -9,7 +9,7 @@ class Orders:
             symbol=symbol,
             quantity=quantity)
 
-        return(order)
+        return order
     
     def market_sell(self, symbol, quantity):
 
@@ -17,4 +17,20 @@ class Orders:
             symbol = symbol,
             quantity = quantity)
 
-        return(order)
+        return order
+    
+    def limit_buy(self, symbol, quantity, price):
+        order = self.client.order_limit_buy(
+            symbol= symbol,
+            quantity=quantity,
+            price=price)
+
+        return order
+        
+    def limit_sell(self,symbol, quantity, price):
+        order = self.client.order_limit_sell(
+            symbol= symbol,
+            quantity=quantity,
+            price=price)
+
+        return order
