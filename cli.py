@@ -113,7 +113,7 @@ def checkCMD(account, order):
         df = pd.Series(info)
 
         print(df[['orderId', 'symbol', 'side', 'type', 'status']])
-        print("\n*For more information check logs.\n")
+        print("\n*For more information check logs.\npython main.py account -l\n")
     
     logger.info(df)
     return df 
