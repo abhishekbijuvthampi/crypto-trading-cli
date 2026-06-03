@@ -8,23 +8,23 @@ Testing_bot/
 |
 |---config/
 |   |
-|   |---.env
-|   |---settings.py
+|   |---.env                -Store API credentials and environment variables. 
+|   |---settings.py         -Loads and manages application configuration settings.
 |
 |---data/
 |   |
-|   |---app.log
-|   |---logging_config.py
-|   |---market_data.py
+|   |---app.log             -Stores application logs and API responses
+|   |---logging_config.py   -Configures the logging system.
+|   |---market_data.py      -Processes market related data from Binance.
 |
 |---execution
 |   |
-|   |---account.py
-|   |---orders.py
+|   |---account.py          -Handles account related operations.
+|   |---orders.py           -Handles market and limit order execution.
 |
 |---.gitignore
 |
-|---cli.py
+|---cli.py                  -Defines command line arguments.
 |
 |---main.py
 |
