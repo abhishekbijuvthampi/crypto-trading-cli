@@ -19,5 +19,3 @@ account = Account(client)
 
 
 info = checkCMD(account, order)
-
-print(info)

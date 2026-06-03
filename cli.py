@@ -12,18 +12,18 @@ subparsers = parser.add_subparsers(dest="command")
 # Subcommand Acoount
 parser_account = subparsers.add_parser(
     "account",
-    help="to Account Details"
+    help="Manage account informations."
     )
 parser_account.add_argument(
     '-a', 
     '--asset', 
     type=str, 
-    help='to Check Asset (eg: BTC, USDT, BNB)'
+    help='View current asset(eg: BTC, USDT, BNB).'
     )
 parser_account.add_argument(
     '-l',
-    '--log',
-    help="show account logs",
+    '--logs',
+    help="View account activity logs.",
     action='store_true'
     )
 
@@ -31,26 +31,26 @@ def add_common_args(p):
     p.add_argument(
         'side', 
         choices=['b', 's'],
-        help="choose : 'b' (buy), 's' (sell) "
+        help="Trade direction: 'b' = BUY, 's' = SELL."
         )
     p.add_argument(
         '-p',
         '--pair', 
         type=str,
-        help="Trading Pair",
+        help="Trading pairs (e.g., BTCUSDT, BNBUSDT).",
         required=True
         )
     p.add_argument(
         'quantity',
         type=float,
-        help="quantity of the trade"
+        help="Amount of asset to trade."
         )
 
 
 # Subcommand Trade
 parser_trade = subparsers.add_parser(
     "trade",
-    help="to Trade"
+    help="Execute market and limit orders."
     )
 
 subparsers_trade = parser_trade.add_subparsers(dest="subcommand")
@@ -58,13 +58,13 @@ subparsers_trade = parser_trade.add_subparsers(dest="subcommand")
 #market buy/sell
 market_trade = subparsers_trade.add_parser(
     "market",
-    help="For market BUY/SELL")
+    help="Place instant market orders.")
 add_common_args(market_trade)
 
 #limit buy/sell
 limit_trade = subparsers_trade.add_parser(
     "limit",
-    help="For limit BUY/SELL")
+    help="Place limit orders with price control.")
 add_common_args(limit_trade)
 limit_trade.add_argument(
     'price', 
@@ -86,7 +86,7 @@ def checkCMD(account, order):
             with open("data/app.log", "r") as f:
                 for line in f:
                     print(line.strip())
-            info  = "Checked Log info"
+            info  = "Checked Log info."
     
     elif args.command == 'trade':
         if args.subcommand == 'market':
@@ -107,10 +107,12 @@ def checkCMD(account, order):
                 info = order.limit_sell(args.pair, 
                     args.quantity, args.price)
         
-    # logger.info(info)
 
     df = pd.Series(info)
     logger.info(df)
+
+    print(df[['orderId', 'symbol', 'side', 'type', 'status']])
+    print("\n*For more information check logs.\n")
     
     return df 
     
