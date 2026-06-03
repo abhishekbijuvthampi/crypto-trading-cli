@@ -6,11 +6,14 @@ from execution.account import Account
 from cli import args, checkCMD
 import pandas as pd
 
-client = Client(
-    API_KEY,
-    API_SECRET,
-    testnet=True
-)
+try:
+    client = Client(
+        API_KEY,
+        API_SECRET,
+        testnet=True
+    )
+except Exception as e:
+    print(f"Error: {e}")
 
 market = MarketData(client)
 order = Orders(client)
