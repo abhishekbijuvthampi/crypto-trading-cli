@@ -10,6 +10,6 @@ A CLI-based trading bot what interacts with Binance Testnet API to place trades 
 
 ## Installation
 Clone this repository:
-    `git clone <your-repo-link>
-    cd trading-bot`
+    ````git clone <your-repo-link> 
+    cd trading-bot````
 
