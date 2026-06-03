@@ -9,7 +9,7 @@ class Orders:
             symbol=symbol,
             quantity=quantity)
 
-        print(order)
+        return(order)
     
     def market_sell(self, symbol, quantity):
 
@@ -17,4 +17,4 @@ class Orders:
             symbol = symbol,
             quantity = quantity)
 
-        print(order)
+        return(order)

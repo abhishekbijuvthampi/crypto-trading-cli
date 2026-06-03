@@ -24,4 +24,7 @@ current_price = MarketData.crt_price(client,symbol)
 order = Orders(client)
 account = Account(client)
 
+
+
 checkCMD(account, order)
+

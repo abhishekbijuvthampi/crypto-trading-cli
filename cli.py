@@ -1,4 +1,6 @@
 import argparse
+import pandas as pd
+from data.logging_config import get_logger
 
 parser = argparse.ArgumentParser(
     description="Trading Bot CLI"
@@ -53,15 +55,28 @@ parser_trade.add_argument(
 
 args = parser.parse_args()
 
+logger = get_logger()
+
+
 def checkCMD(account, order):
     if args.command == 'account':
         if args.asset:
-            account.show_asset(args.asset)
-
+            info = account.show_asset(args.asset)
+        
+        elif args.log:
+            with open("data/app.log", "r") as f:
+                for line in f:
+                    print(line.strip())
+            info  = "Checked Log info"
+    
     elif args.command == 'trades':
         if args.side == 'BUY':
-            order.market_buy(args.symbol, 
+            info = order.market_buy(args.symbol, 
                 args.quantity)
+        
         elif args.side == 'SELL':
-            order.market_sell(args.symbol, 
+            info = order.market_sell(args.symbol, 
                 args.quantity)
+
+    logger.info(info)
+    
