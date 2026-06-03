@@ -111,7 +111,7 @@ python main.py trade limit -p BTCUSDT b 0.01 66939
 ## Technologies Used
 - Python
 - pandas
-- python-binance
+- python
 - arparse
 - logging
 - python-dotenv
