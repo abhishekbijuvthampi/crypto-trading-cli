@@ -3,7 +3,7 @@ from binance.client import Client
 from config.settings import API_KEY,API_SECRET
 from execution.orders import Orders
 from execution.account import Account
-from cli import args
+from cli import args, checkCMD
 import pandas as pd
 
 symbol = "BNBUSDT"
@@ -24,4 +24,4 @@ current_price = MarketData.crt_price(client,symbol)
 order = Orders(client)
 account = Account(client)
 
-print(args)
+checkCMD(account)

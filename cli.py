@@ -1,4 +1,5 @@
 import argparse
+from execution.account import Account
 
 parser = argparse.ArgumentParser(
     description="Trading Bot CLI"
@@ -51,6 +52,9 @@ parser_trade.add_argument(
     help="quantity of the trade"
     )
 
-
-
 args = parser.parse_args()
+
+def checkCMD(account):
+    if args.command == 'account':
+        if args.asset:
+            account.show_asset(args.asset)
