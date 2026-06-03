@@ -87,7 +87,9 @@ def checkCMD(account, order):
                 for line in f:
                     print(line.strip())
             info  = "Checked Log info."
-    
+        df = pd.Series(info)
+        print(df)
+
     elif args.command == 'trade':
         if args.subcommand == 'market':
             if args.side == 'b':
@@ -106,13 +108,12 @@ def checkCMD(account, order):
             elif args.side == 's':
                 info = order.limit_sell(args.pair, 
                     args.quantity, args.price)
-        
 
-    df = pd.Series(info)
-    logger.info(df)
+        df = pd.Series(info)
+        logger.info(df)
 
-    print(df[['orderId', 'symbol', 'side', 'type', 'status']])
-    print("\n*For more information check logs.\n")
+        print(df[['orderId', 'symbol', 'side', 'type', 'status']])
+        print("\n*For more information check logs.\n")
     
     return df 
     

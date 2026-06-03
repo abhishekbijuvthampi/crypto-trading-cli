@@ -9,5 +9,4 @@ class Account:
     
     def show_asset(self, asset):
         result = self.client.get_asset_balance(asset = asset)
-        print(result)
         return(result)
